@@ -20,7 +20,7 @@ return new class extends Migration
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->string('title');
-            $table->string('thumbnail');
+            $table->string('thumbnail')->nullable();
             $table->date('departure_day');
             $table->date('return_day');
             $table->timestamps();
