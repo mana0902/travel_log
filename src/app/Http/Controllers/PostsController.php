@@ -144,8 +144,8 @@ class PostsController extends Controller
     public function edit($id)
     {
         //
-        $num=$id;
-        return view('posts.edit',compact('num'));
+        $post=Post::findOrFail($id);
+        return view('posts.edit',compact('post'));
     }
 
     /**
@@ -158,6 +158,28 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $post=Post::findOrFail($id);
+        $post->title=$request->title;
+        $post->departure_day=$request->departure_day;
+        $post->return_day=$request->return_day;
+
+        $imageFile = $request->file('thumbnail');
+        if(!is_null($imageFile)){
+        $resizedImage = InterventionImage::make($imageFile)
+        ->resize(1920, 1080)->encode();
+
+        $fileName = uniqid(rand().'_');
+        $extension = $imageFile->extension();
+        $fileNameToPost = $fileName. '.' . $extension;
+        Storage::put('public/posts/' . $fileNameToPost,$resizedImage);
+        }
+        $post->thumbnail=$fileNameToPost;
+
+
+        $post->save();
+        return redirect()
+        ->route('posts.index');
     }
 
     /**

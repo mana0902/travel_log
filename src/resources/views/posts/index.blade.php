@@ -51,6 +51,7 @@ index
                   @foreach ($posts as $post)
 
                <div class="lg:w-1/4 md:w-1/2 p-2 w-full container">
+
                   <div class=" bg-white p-4 rounded">
                     <a class="block relative h-48 rounded overflow-hidden" href="{{route('posts.show',['post'=>$post->id])}}">
                       @if($post->thumbnail == '')
@@ -60,10 +61,36 @@ index
                       @endif
                     </a>
 
-                    <div class="mt-4">
-                      <h2 class="px-4 text-gray-900 title-font text-lg font-medium">
+                    <div class="mt-4 flex ">
+                      <h2 class=" flex-1 px-4 text-gray-900 title-font text-lg font-medium">
                         <a href="{{route('posts.show',['post'=>$post->id])}}"><div>{{$post->title}}</div></a>
                       </h2>
+                      <div class="flex-end">
+                        <div class="hidden sm:flex sm:items-center sm:ml-6">
+                          <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                              <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                <div class="ml-1 text-gray-600 title-font text-1xl">・・・</div>
+                              </button>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('posts.edit',['post'=>$post->id])">
+                                  編集
+                                </x-dropdown-link>
+
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        削除
+                                    </x-dropdown-link>
+                                </form>
+                            </x-slot>
+                        </x-dropdown>
+                    </div></div>
                     </div>
                   </div>
               </div>
