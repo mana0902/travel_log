@@ -14,7 +14,7 @@ create
           </div>
           <section class="text-gray-600 body-font relative text-center">
             <div class="container px-5 py-24 mx-auto">
-              <form method="post" action="{{route('posts.store')}}">
+              <form method="post" action="{{route('posts.store')}}" enctype="multipart/form-data">
                 @csrf
               <div class="lg:w-1/2 md:w-2/3 mx-auto ">
                 <div class=" -m-2">
@@ -37,6 +37,13 @@ create
                       <label for="return_day" class="leading-7 text-sm text-gray-600">帰宅日</label>
                       <input type="date" id="return_day" name="return_day" class="drop-shadow-xl w-full bg-gray-20 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                       <x-input-error :messages="$errors->get('return_day')" class="mt-2" />
+                    </div>
+                  </div>
+                  <div class="p-5 ">
+                    <div class="relative">
+                      <label for="thumbnail" class="leading-7 text-sm text-gray-600">サムネイル</label>
+                      <input type="file" id="thumbnail" accept="image/png,image/jpeg,image/jpg" name="thumbnail" class="drop-shadow-xl w-full bg-gray-20 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                      <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
                   </div>
                 <div class="flex">

@@ -8,6 +8,8 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use Illuminate\Support\Facades\Storage;
+use InterventionImage;
 
 
 class PostsController extends Controller
@@ -53,16 +55,30 @@ class PostsController extends Controller
     {
         // dd(Auth::id());
         //
+        // dd($request->file('thumbnail'));
+        $imageFile = $request->file('thumbnail');
+        if(!is_null($imageFile)){
+        $resizedImage = InterventionImage::make($imageFile)
+        ->resize(1920, 1080)->encode();
+
+        $fileName = uniqid(rand().'_');
+        $extension = $imageFile->extension();
+        $fileNameToPost = $fileName. '.' . $extension;
+        Storage::put('public/posts/' . $fileNameToPost,$resizedImage);
+        }elseif(is_null($imageFile)){
+        $fileNameToPost='';
+        }
         $request->validate([
             'title'=>'required|string|max:255',
             'departure_day'=>'required',
             'return_day'=>'required'
         ]);
+
         $post=Post::create(
             [
                 'title'=>$request->title,
                 'user_id'=>Auth::id(),
-                'thumbnail'=>'',
+                'thumbnail'=>$fileNameToPost,
                 'departure_day'=>$request->departure_day,
                 'return_day'=>$request->return_day
             ]
@@ -116,7 +132,7 @@ class PostsController extends Controller
         // dd($ary);
 
 
-        return view('posts.show',['post' => $id],compact('ary'));
+        return view('posts.show',['post' => $id],compact('ary','id'));
     }
 
     /**

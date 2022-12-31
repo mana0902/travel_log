@@ -5,102 +5,71 @@ index
       </h2>
   </x-slot>
 
-  <div class="py-12">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+  <div class="py-12  bg-lime-200">
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-lime-200 ">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="p-6 text-gray-900">
                   {{ __("You're logged in!") }}
               </div>
           </div>
-<section class="text-gray-600 body-font">
+<section class="text-gray-600 body-font bg-lime-200">
+  <div class="float-right mt-5"><div class="hidden sm:flex sm:items-center sm:ml-6">
+    <x-dropdown align="right" width="48">
+        <x-slot name="trigger">
+            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                <div class="ml-1 text-gray-600 title-font text-2xl">
+                  +
+                    {{-- <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg> --}}
+                </div>
+            </button>
+        </x-slot>
+
+        <x-slot name="content">
+            <x-dropdown-link :href="route('posts.create')">
+              新規投稿
+            </x-dropdown-link>
+
+            <!-- Authentication -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    削除
+                </x-dropdown-link>
+            </form>
+        </x-slot>
+    </x-dropdown>
+</div></div>
             <div class="container px-5 py-24 mx-auto">
+
               <div class="flex flex-wrap -m-4">
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-<div>
-     @foreach ($posts as $post)
-  <a href="{{route('posts.show',['post'=>$post->id])}}"><div>{{$post->id}}</div></a>
-     @endforeach
-</div>
-                  <a class="block relative h-48 rounded overflow-hidden">
-                    <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
-                  </a>
-                  <div class="mt-4">
-                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                    <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                    <p class="mt-1">$16.00</p>
+
+                  @foreach ($posts as $post)
+
+               <div class="lg:w-1/4 md:w-1/2 p-2 w-full container">
+                  <div class=" bg-white p-4 rounded">
+                    <a class="block relative h-48 rounded overflow-hidden" href="{{route('posts.show',['post'=>$post->id])}}">
+                      @if($post->thumbnail == '')
+                      <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
+                      @else
+                      <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ asset('/storage/posts/'.$post->thumbnail)}}">
+                      @endif
+                    </a>
+
+                    <div class="mt-4">
+                      <h2 class="px-4 text-gray-900 title-font text-lg font-medium">
+                        <a href="{{route('posts.show',['post'=>$post->id])}}"><div>{{$post->title}}</div></a>
+                      </h2>
+                    </div>
                   </div>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                  <a class="block relative h-48 rounded overflow-hidden">
-                    <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/421x261">
-                  </a>
-                  <div class="mt-4">
-                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                    <h2 class="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-                    <p class="mt-1">$21.15</p>
-                  </div>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                  <a class="block relative h-48 rounded overflow-hidden">
-                    <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/422x262">
-                  </a>
-                  <div class="mt-4">
-                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                    <h2 class="text-gray-900 title-font text-lg font-medium">Neptune</h2>
-                    <p class="mt-1">$12.00</p>
-                  </div>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                  <a class="block relative h-48 rounded overflow-hidden">
-                    <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/423x263">
-                  </a>
-                  <div class="mt-4">
-                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                    <h2 class="text-gray-900 title-font text-lg font-medium">The 400 Blows</h2>
-                    <p class="mt-1">$18.40</p>
-                  </div>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                  <a class="block relative h-48 rounded overflow-hidden">
-                    <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/424x264">
-                  </a>
-                  <div class="mt-4">
-                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                    <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                    <p class="mt-1">$16.00</p>
-                  </div>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                  <a class="block relative h-48 rounded overflow-hidden">
-                    <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/425x265">
-                  </a>
-                  <div class="mt-4">
-                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                    <h2 class="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-                    <p class="mt-1">$21.15</p>
-                  </div>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                  <a class="block relative h-48 rounded overflow-hidden">
-                    <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/427x267">
-                  </a>
-                  <div class="mt-4">
-                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                    <h2 class="text-gray-900 title-font text-lg font-medium">Neptune</h2>
-                    <p class="mt-1">$12.00</p>
-                  </div>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                  <a class="block relative h-48 rounded overflow-hidden">
-                    <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/428x268">
-                  </a>
-                  <div class="mt-4">
-                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                    <h2 class="text-gray-900 title-font text-lg font-medium">The 400 Blows</h2>
-                    <p class="mt-1">$18.40</p>
-                  </div>
-                </div>
               </div>
+                  @endforeach
+              </div>
+
             </div>
           </section>
       </div>
