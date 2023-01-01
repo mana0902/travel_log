@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\SchedulesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,9 @@ use App\Http\Controllers\PostsController;
 */
 
 Route::resource('posts', PostsController::class)
+->middleware('auth');
+
+Route::resource('posts.schedules', SchedulesController::class)
 ->middleware('auth');
 
 Route::get('/', function () {

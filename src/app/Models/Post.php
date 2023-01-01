@@ -23,4 +23,8 @@ class Post extends Model
 
 
     }
+    public function schedule()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }
