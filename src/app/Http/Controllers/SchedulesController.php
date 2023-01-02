@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Date;
 use App\Models\Schedule;
+use InterventionImage;
+use DateTime;
+use Illuminate\Support\Facades\Storage;
 
 class SchedulesController extends Controller
 {
@@ -25,11 +30,15 @@ class SchedulesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
 
         //
-        return view('schedules.create');
+
+        $post_id=$request->route('post');
+        $date_id=$request->route('date');
+
+        return view('schedules.create',compact('post_id','date_id'));
     }
 
     /**
@@ -70,9 +79,10 @@ class SchedulesController extends Controller
         $posts=Post::where('user_id',Auth::id())
          ->where('id', '=', $post_id)
          ->get();
+        $date_id=$request->route('date');
 
         $schedule=Schedule::create([
-            'post_id'=> $post_id,
+            'date_id'=>$date_id,
             'start_time'=>$request->start_time,
             'end_time'=>$request->end_time,
             'file_name_1'=>$fileNameToPost_1,

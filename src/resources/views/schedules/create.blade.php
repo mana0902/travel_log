@@ -14,7 +14,7 @@ create
           </div>
           <section class="text-gray-600 body-font relative text-center">
             <div class="container px-5 py-24 mx-auto">
-              <form method="post" action="{{route('posts.schedules.store',['post'=>3])}}" enctype="multipart/form-data">
+              <form method="post" action="{{route('posts.dates.schedules.store',['post'=>$post_id,'date'=>$date_id])}}" enctype="multipart/form-data">
                 @csrf
               <div class="lg:w-1/2 md:w-2/3 mx-auto ">
                 <div class=" -m-2">

@@ -19,8 +19,10 @@ use App\Http\Controllers\SchedulesController;
 Route::resource('posts', PostsController::class)
 ->middleware('auth');
 
-Route::resource('posts.schedules', SchedulesController::class)
+Route::resource('posts.dates.schedules', SchedulesController::class)
 ->middleware('auth');
+
+
 
 Route::get('/', function () {
     return view('welcome');

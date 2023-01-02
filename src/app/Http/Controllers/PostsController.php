@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Date;
+use App\Models\Schedule;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -42,6 +44,7 @@ class PostsController extends Controller
     public function create()
     {
         //
+
         return view('posts.create');
     }
 
@@ -84,6 +87,29 @@ class PostsController extends Controller
             ]
             );
 
+            function dateCalculation($dateTime1,$dateTime2){
+                $objDatetime1 = new DateTime($dateTime1);
+                $objDatetime2 = new DateTime($dateTime2);
+
+                $objInterval = $objDatetime1->diff($objDatetime2);
+                return $num=$objInterval->format('%d');
+                }
+
+
+            $dateTime1=$request->departure_day;
+            $dateTime2=$request->return_day;
+
+            $num=dateCalculation($dateTime1,$dateTime2);
+
+            for($i=0;$i<$num+1;$i++){
+            $date=date('Y/m/d',strtotime("$dateTime1 + $i day"));
+            $date_table=Date::create(
+                [
+                    'date'=>$date,
+                    'post_id'=>$post->id
+                ]
+                );}
+
         return redirect()
         ->route('posts.index');
 
@@ -105,10 +131,23 @@ class PostsController extends Controller
 
         //
 
-        $posts=Post::where('user_id',Auth::id())
+        $posts=Post::where('user_id','=',Auth::id())
          ->where('id', '=', $id)
          ->get();
 
+        $dates=Date::where('post_id','=',$id)
+        ->get();
+        $schedule=[];
+        foreach($dates as $date){
+            $schedule[]=Schedule::where('date_id','=',$date->id)
+            ->get();
+        }
+        // for($i=0;$i<count($schedule);$i++){
+        //     for($j=0;$j<count($schedule[$i]);$j++)
+        //     if($schedule[$i][$j]->date_id==$key->id)
+        // }
+
+        // dd($schedule[0]);
 
          function dateCalculation($dateTime1,$dateTime2){
             $objDatetime1 = new DateTime($dateTime1);
@@ -128,11 +167,19 @@ class PostsController extends Controller
             $ary[]=['date'=> date('Y/m/d',strtotime("$dateTime1 + $i day"))];
             }
         }
+        // for($i=0;$i<$num+1;$i++){
+        // $date=date('Y/m/d',strtotime("$dateTime1 + $i day"));
+        // Date::create(
+        //     [
+        //         'date'=>$date,
+        //         'post_id'=>$id,
+        //     ]
+        //     );
 
         // dd($ary);
 
 
-        return view('posts.show',['post' => $id],compact('ary','id'));
+        return view('posts.show',['post' => $id],compact('ary','id','dates','schedule'));
     }
 
     /**

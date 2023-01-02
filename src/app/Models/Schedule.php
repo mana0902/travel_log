@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Post;
+use App\Models\Date;
 
 class Schedule extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'post_id',
+        'date_id',
         'start_time',
         'end_time',
         'filename_1',
@@ -20,9 +20,9 @@ class Schedule extends Model
         'destination',
         'comment',
     ];
-    public function post()
+    public function date()
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Date::class);
 
 
     }

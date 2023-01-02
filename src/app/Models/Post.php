@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Date;
 
 class Post extends Model
 {
@@ -23,8 +24,9 @@ class Post extends Model
 
 
     }
-    public function schedule()
+    public function date()
     {
-        return $this->hasMany(Schedule::class);
+        return $this->hasMany(Date::class);
     }
+
 }

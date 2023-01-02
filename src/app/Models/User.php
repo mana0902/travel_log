@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Post;
+use App\Models\Date;
+use App\Models\Schedule;
 
 class User extends Authenticatable
 {
@@ -19,6 +21,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+
     /**
      * The attributes that are mass assignable.
      *
