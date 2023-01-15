@@ -1,17 +1,11 @@
 <x-app-layout>
   <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-edit
       </h2>
   </x-slot>
 
-  <div class="py-12 bg-[#d9f99d]">
+  <div class=" bg-[#d9f99d]">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-              <div class="p-6 text-#86efac">
-                  {{ __("You're logged in!") }}
-              </div>
-          </div>
           <section class="text-gray-600 body-font relative text-center">
             <div class="container px-5 py-24 mx-auto">
               <form method="post" action="{{route('posts.update',['post' => $post->id])}}" enctype="multipart/form-data">

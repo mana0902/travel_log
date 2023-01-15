@@ -177,7 +177,11 @@ class PostsController extends Controller
         //     );
 
         // dd($ary);
+        // for($i=0;$i<count($schedule);$i++){
+        // for($j=0;$j<count($schedule[$i]);$j++){
+        //   dd($schedule[$i][$j]->filename_1);
 
+        // }}
 
         return view('posts.show',['post' => $id],compact('ary','id','dates','schedule'));
     }
@@ -237,6 +241,12 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
+        $post=Post::findOrFail($id);
+        $post->delete();
+
+
+        return redirect()
+        ->route('posts.index');
         //
     }
 }

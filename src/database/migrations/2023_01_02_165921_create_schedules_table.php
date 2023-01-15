@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('filename_2')->nullable();
             $table->string('filename_3')->nullable();
             $table->string('filename_4')->nullable();
-            $table->string('destination');
-            $table->string('comment');
+            $table->string('destination')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }

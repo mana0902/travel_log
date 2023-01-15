@@ -1,19 +1,14 @@
 <x-app-layout>
   <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-create
       </h2>
   </x-slot>
 
   <div class="py-12 bg-[#d9f99d]">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-              <div class="p-6 text-#86efac">
-                  {{ __("You're logged in!") }}
-              </div>
-          </div>
+
           <section class="text-gray-600 body-font relative text-center">
-            <div class="container px-5 py-24 mx-auto">
+            <div class="container px-5 py- mx-auto">
               <form method="post" action="{{route('posts.store')}}" enctype="multipart/form-data">
                 @csrf
               <div class="lg:w-1/2 md:w-2/3 mx-auto ">
@@ -48,10 +43,11 @@ create
                   </div>
                 <div class="flex">
                   <div class="p-10 w-full">
-                      <button type="submit" class=" drop-shadow-xl flex mx-auto text-white bg-[#84cc16] border-0 py-2 px-8 focus:outline-none hover:bg-[#65a30d] rounded text-lg">登録する</button>
+                      <button type="submit" class=" drop-shadow-xl flex mx-auto text-white bg-[#84cc16] border-0 py-2 px-8 focus:outline-none hover:bg-[#65a30d] rounded text-lg">登録</button>
                     </div>
                     <div class="p-10 w-full">
-                      <button type="button" class="drop-shadow-xl flex mx-auto text-white bg-[#22c55e] border-0 py-2 px-8 focus:outline-none hover:bg-[#16a34a] rounded text-lg">戻る</button>
+                      <button onclick=location.href='{{ route('posts.index')}}' type="button" class="drop-shadow-xl flex mx-auto text-white bg-[#22c55e] border-0 py-2 px-8 focus:outline-none hover:bg-[#16a34a] rounded text-lg">戻る
+                      </button>
                   </div>
                 </div>
 

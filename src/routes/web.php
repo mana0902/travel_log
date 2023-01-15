@@ -25,7 +25,7 @@ Route::resource('posts.dates.schedules', SchedulesController::class)
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 
 Route::get('/dashboard', function () {

@@ -1,0 +1,33 @@
+/*------ スライダーの横幅 ------*/
+.slider{
+  width:50%;
+  margin:0 auto;
+}
+.slider div{
+width: 100%;
+}
+/*------ スライダー画像 ------*/
+.slider img{
+	width:100%;
+}
+
+/*-------- 高さ調整 ----------*/
+.slider .slick-slide{
+	height:auto!important;
+}
+
+/*---------- 矢印 ----------*/
+.slider .slick-next{
+    right:0!important;
+}
+.slider .slick-prev{
+    left:0!important;
+}
+.slider .slick-arrow{
+    width: initial!important;
+    height: initial!important;
+    z-index:2!important;
+}
+.slider .slick-arrow:before{
+    font-size: 30px!important;
+}

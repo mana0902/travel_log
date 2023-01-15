@@ -10,6 +10,19 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
+<!--------------------スライダー見た目-------------------------------------------------->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+<!------------------------------------------------------------------------------------->
+
+<!--------------------jQuery----------------------------------------------------------->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<!------------------------------------------------------------------------------------->
+
+<!--------------------スライダー動かすやつ----------------------------------------------->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<!------------------------------------------------------------------------------------->
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -32,4 +45,5 @@
             </main>
         </div>
     </body>
+
 </html>

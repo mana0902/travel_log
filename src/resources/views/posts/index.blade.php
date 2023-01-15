@@ -1,19 +1,18 @@
 <x-app-layout>
   <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-index
       </h2>
   </x-slot>
 
   <div class="py-12  bg-lime-200">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-lime-200 ">
+      {{-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-lime-200 ">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="p-6 text-gray-900">
                   {{ __("You're logged in!") }}
               </div>
-          </div>
-<section class="text-gray-600 body-font bg-lime-200">
-  <div class="float-right mt-5"><div class="hidden sm:flex sm:items-center sm:ml-6">
+          </div> --}}
+<section class="w-screen h-screen text-gray-600 body-font bg-lime-200 container mx-auto bg-lime-200">
+  <div class="float-right mr-10"><div class=" sm:flex sm:items-center sm:mr-4 ">
     <x-dropdown align="right" width="48">
         <x-slot name="trigger">
             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -32,7 +31,7 @@ index
             </x-dropdown-link>
 
             <!-- Authentication -->
-            <form method="POST" action="{{ route('logout') }}">
+            {{-- <form method="POST" action="{{ route('logout') }}">
                 @csrf
 
                 <x-dropdown-link :href="route('logout')"
@@ -40,7 +39,7 @@ index
                                     this.closest('form').submit();">
                     削除
                 </x-dropdown-link>
-            </form>
+            </form> --}}
         </x-slot>
     </x-dropdown>
 </div></div>
@@ -66,7 +65,7 @@ index
                         <a href="{{route('posts.show',['post'=>$post->id])}}"><div>{{$post->title}}</div></a>
                       </h2>
                       <div class="flex-end">
-                        <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <div class="sm:flex sm:items-center sm:ml-6">
                           <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                               <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -79,15 +78,13 @@ index
                                 </x-dropdown-link>
 
                                 <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-dropdown-link :href="route('logout')"
-                                            onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
-                                        削除
-                                    </x-dropdown-link>
-                                </form>
+                                <div class="'block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out'">
+                                  <form action="{{ route('posts.destroy', ['post'=>$post->id]) }}" method="POST">
+                                  @method('delete')
+                                  @csrf
+                                    <button type="submit" class="btn btn-danger">削除</button>
+                                  </form>
+                                </div>
                             </x-slot>
                         </x-dropdown>
                     </div></div>
