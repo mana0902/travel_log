@@ -4,14 +4,14 @@
       </h2>
   </x-slot>
 
-  <div class="py-12  bg-lime-200">
+  <div class="py-12 bg-gradient-to-r from-rose-100 to-teal-100 ">
       {{-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-lime-200 ">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="p-6 text-gray-900">
                   {{ __("You're logged in!") }}
               </div>
           </div> --}}
-<section class="w-screen h-screen text-gray-600 body-font bg-lime-200 container mx-auto bg-lime-200">
+<section class="w-screen h-screen text-gray-600 body-font bg-gradient-to-r from-rose-100 to-teal-100  container mx-auto bg-lime-200">
   <div class="float-right mr-10"><div class=" sm:flex sm:items-center sm:mr-4 ">
     <x-dropdown align="right" width="48">
         <x-slot name="trigger">

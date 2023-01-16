@@ -4,7 +4,7 @@
       </h2>
   </x-slot>
 
-  <div class=" bg-[#d9f99d]">
+  <div class=" bg-gradient-to-r from-rose-100 to-teal-100 ">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <section class="text-gray-600 body-font relative text-center">
             <div class="container px-5 py-24 mx-auto">

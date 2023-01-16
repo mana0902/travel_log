@@ -66,10 +66,10 @@ class SchedulesController extends Controller
         return $fileNameToPost=NULL;
         }
         }
-        $fileNameToPost_1='';
-        $fileNameToPost_2='';
-        $fileNameToPost_3='';
-        $fileNameToPost_4='';
+        $fileNameToPost_1=NULL;
+        $fileNameToPost_2=NULL;
+        $fileNameToPost_3=NULL;
+        $fileNameToPost_4=NULL;
 
         for($i=1;$i<5;$i++){
             $name='fileNameToPost_'.$i;
@@ -153,16 +153,16 @@ class SchedulesController extends Controller
         $fileName = uniqid(rand().'_');
         $extension = $imageFile->extension();
         $fileNameToPost = $fileName. '.' . $extension;
-        Storage::put('public/posts/' . $fileNameToPost,$resizedImage);
+        Storage::put('public/schedules/' . $fileNameToPost,$resizedImage);
         return $fileNameToPost;
         }elseif(is_null($imageFile)){
-        return $fileNameToPost='';
+        return $fileNameToPost=NULL;
         }
         }
-        $fileNameToPost_1='';
-        $fileNameToPost_2='';
-        $fileNameToPost_3='';
-        $fileNameToPost_4='';
+        $fileNameToPost_1=NULL;
+        $fileNameToPost_2=NULL;
+        $fileNameToPost_3=NULL;
+        $fileNameToPost_4=NULL;
 
         for($i=1;$i<5;$i++){
             $name='fileNameToPost_'.$i;
